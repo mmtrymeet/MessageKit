@@ -119,7 +119,7 @@ public protocol MessagesDisplayDelegate: AnyObject {
     ///   - messagesCollectionView: The `MessagesCollectionView` in which this cell will be displayed.
     ///
     /// The default value returned by this method is all available detector types.
-    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType]
+//    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType]
 
     /// Specifies the attributes for a given `DetectorType`
     ///
@@ -128,7 +128,7 @@ public protocol MessagesDisplayDelegate: AnyObject {
     ///   - message: A `MessageType` with a `MessageData` case of `.text` or `.attributedText`
     ///   to which the detectors will apply.
     ///   - indexPath: The `IndexPath` of the cell.
-    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedStringKey: Any]
+//    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedStringKey: Any]
 
     // MARK: - Location Messages
 
@@ -218,13 +218,13 @@ public extension MessagesDisplayDelegate {
         return dataSource.isFromCurrentSender(message: message) ? .white : .darkText
     }
 
-    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
-        return []
-    }
-
-    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedStringKey: Any] {
-        return MessageLabel.defaultAttributes
-    }
+//    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
+//        return []
+//    }
+//
+//    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [String: Any] {
+//        return MessageLabel.defaultAttributes
+//    }
 
     // MARK: - Location Messages Defaults
 

@@ -68,14 +68,14 @@ open class TextMessageCell: MessageCollectionViewCell {
         }
 
         let textColor = displayDelegate.textColor(for: message, at: indexPath, in: messagesCollectionView)
-        let enabledDetectors = displayDelegate.enabledDetectors(for: message, at: indexPath, in: messagesCollectionView)
+//        let enabledDetectors = displayDelegate.enabledDetectors(for: message, at: indexPath, in: messagesCollectionView)
 
         messageLabel.configure {
-            messageLabel.enabledDetectors = enabledDetectors
-            for detector in enabledDetectors {
-                let attributes = displayDelegate.detectorAttributes(for: detector, and: message, at: indexPath)
-                messageLabel.setAttributes(attributes, detector: detector)
-            }
+//            messageLabel.enabledDetectors = enabledDetectors
+//            for detector in enabledDetectors {
+//                let attributes = displayDelegate.detectorAttributes(for: detector, and: message, at: indexPath)
+////                messageLabel.setAttributes(attributes, detector: detector)
+//            }
             switch message.data {
             case .text(let text), .emoji(let text):
                 messageLabel.text = text
