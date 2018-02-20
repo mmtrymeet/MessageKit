@@ -239,14 +239,14 @@ fileprivate extension MessagesCollectionViewFlowLayout {
         attributes.messageContainerPadding = messageContainerPadding(for: attributes)
         attributes.messageLabelInsets = messageLabelInsets(for: attributes)
         
-        // MessageContainerView
-        attributes.messageContainerMaxWidth = messageContainerMaxWidth(for: attributes)
-        attributes.messageContainerSize = messageContainerSize(for: attributes)
-        
         // Cell Bottom Label
         attributes.bottomLabelAlignment = cellBottomLabelAlignment(for: attributes)
         attributes.bottomLabelMaxWidth = cellBottomLabelMaxWidth(for: attributes)
         attributes.bottomLabelSize = cellBottomLabelSize(for: attributes)
+
+        // MessageContainerView
+        attributes.messageContainerMaxWidth = messageContainerMaxWidth(for: attributes)
+        attributes.messageContainerSize = messageContainerSize(for: attributes)
         
         // Cell Top Label
         attributes.topLabelAlignment = cellTopLabelAlignment(for: attributes)
@@ -423,7 +423,8 @@ private extension MessagesCollectionViewFlowLayout {
         
         switch attributes.message.data {
         case .text(let text):
-            messageContainerSize = labelSize(for: text, considering: maxWidth, and: messageLabelFont)
+            let lSize = labelSize(for: text, considering: maxWidth, and: messageLabelFont)
+            messageContainerSize = CGSize.init(width: max(lSize.width, attributes.bottomLabelSize.width), height: lSize.height + attributes.bottomLabelSize.height + attributes.bottomLabelPadding.top + attributes.bottomLabelPadding.bottom)
             messageContainerSize.width += attributes.messageLabelHorizontalInsets
             messageContainerSize.height += attributes.messageLabelVerticalInsets
         case .attributedText(let text):
@@ -434,7 +435,7 @@ private extension MessagesCollectionViewFlowLayout {
             messageContainerSize = labelSize(for: text, considering: maxWidth, and: emojiLabelFont)
             messageContainerSize.width += attributes.messageLabelHorizontalInsets
             messageContainerSize.height += attributes.messageLabelVerticalInsets
-        case .photo, .video:
+        case .photo, .video, .custom:
             let width = messagesLayoutDelegate.widthForMedia(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
             let height = messagesLayoutDelegate.heightForMedia(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
             messageContainerSize = CGSize(width: width, height: height)

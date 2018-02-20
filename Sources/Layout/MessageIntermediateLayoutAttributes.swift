@@ -139,7 +139,7 @@ final class MessageIntermediateLayoutAttributes {
         
         var origin: CGPoint = .zero
         
-        origin.y = messageContainerFrame.maxY + messageContainerPadding.bottom + bottomLabelPadding.top
+        origin.y = messageContainerFrame.maxY -  bottomLabelSize.height - bottomLabelPadding.bottom
         
         switch bottomLabelAlignment {
         case .cellLeading:
